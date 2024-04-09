@@ -8,6 +8,7 @@
 #include <cmath>
 #include <qgraphicsitem.h>
 #include <qscrollbar.h>
+#include <QVector>
 class MyGraphicsView : public QGraphicsView {
 	Q_OBJECT
 public:
@@ -38,7 +39,12 @@ private:
 	float ratio_gpt;
 	// 0: select状态, 1: 缩放状态, 2: measure状态, 6:绘制临时图形. 7:绘制数据图形,  8:显示导入数据后的坐标轴, 9: 初始化图片
 
-	QVector<QPointF> _DataSin;
+	//QVector<QPointF> _DataSin;
+	struct data_set {
+		QVector<QPointF> dataset;
+		QPainterPath path;
+	};
+	QVector<data_set> _dataSin;
 
 	QRectF caculateMinRect()
 	{
@@ -100,8 +106,9 @@ protected:
 		{
 			qDebug() << "reset " << flag;
 			this->resetTransform();
-			flag = 4;
 			viewport()->repaint();
+			//flag = 4;
+			//viewport()->repaint();
 			flag = 1;
 		}
 		default:
@@ -111,7 +118,6 @@ protected:
 	}
 	void mouseReleaseEvent(QMouseEvent* event)override
 	{
-		qDebug() << "ReleaseEvent";
 		switch (flag)
 		{
 		case 0:
@@ -122,17 +128,17 @@ protected:
 
 
 			_selectRecNow = caculateMinRect();
-			qDebug() << "Rect_protol:" << _selectRec.topLeft() << _selectRec.size() << " Rect_now:" << _selectRecNow.topLeft() << _selectRecNow.size();
 			flag = 0;
 			_selectRec = QRectF();
 
 			_isSelect = false;
 			QRectF _thisRec = mapToScene(QRect(_startPos, event->pos())).boundingRect();
 			_thisRec = mapToScene(QRect(_selectRecNow.topLeft().toPoint(), _selectRecNow.bottomRight().toPoint())).boundingRect();
+			flag = 5;
+			viewport()->repaint();
 			fitInView(_thisRec, Qt::KeepAspectRatio);
 			_isScale = true;
 			viewport()->repaint();
-			qDebug() << "Rect's size:" << _selectRecNow.width() << _selectRecNow.height() << "Viewport's size: " << viewport()->width() << viewport()->height();
 			flag = 6;
 			viewport()->repaint();
 			flag = 1;

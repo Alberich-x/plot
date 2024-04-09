@@ -3,7 +3,7 @@
 
 void MyGraphicsView::paintEvent(QPaintEvent* event)
 {
-    qDebug() << "flag:" << flag;
+    //qDebug() << "flag:" << flag;
 	switch (flag)
 	{
 	case 0:
@@ -49,10 +49,11 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
 
         // 设置场景矩形以适应所有项
         combinedScene->setSceneRect(combinedScene->itemsBoundingRect());
-
+        this->setScene(nullptr);
         this->setScene(combinedScene);
         this->setRenderHint(QPainter::Antialiasing, true);
         this->setRenderHint(QPainter::SmoothPixmapTransform, true);
+        flag = 0;
         break;
     }
 
@@ -60,9 +61,11 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
     case 5://切换为纯数据
     {
         qDebug() << "Set scene to _scene1";
+        this->setScene(nullptr);
         this->setScene(_scene1);
         this->setRenderHint(QPainter::Antialiasing, true);
         this->setRenderHint(QPainter::SmoothPixmapTransform, true);
+        flag = 0;
         break;
 
 
@@ -159,26 +162,56 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
     case 7:     //绘制数据测试.首先实现sin函数
     {
         _scene1 = new QGraphicsScene;
-        width = this->viewport()->width();
+        //width = this->viewport()->width();
         height = this->viewport()->height();
         qreal height_each = this->viewport()->height() / (10 * 5);
-        for (qreal i = 0; i < 5000; i += 0.1)
+        qreal height_now = height_each * 5;
+        int cnt_ite = 0;
+        //foreach(data_set dataToEdit, _dataSin) {
+        //    for (qreal i = 0; i < 5000; i += 0.1)
+        //    {
+        //        dataToEdit.dataset.push_back(QPointF(i * 50, qreal(sin(i)) * 50 + height_each * 5));
+        //        qDebug() << i <<dataToEdit.dataset;
+        //    }
+        //    dataToEdit.path.addPath(QPainterPath(dataToEdit.dataset[0]));
+        //}
+        for (int i = 0; i < 10; i++)
         {
-            _DataSin.push_back(QPointF(i*50, qreal(sin(i))*50 + height_each * 5));
+            QVector<QPointF> point_this;
+            data_set dataSet_this;
+            for (qreal j = 0; j < 5000; j += 0.1)
+            {
+                point_this.push_back(QPointF(j * 50, qreal(sin(j)) * 30 + height_now));
+            }
+            dataSet_this.dataset = point_this;
+            dataSet_this.path = QPainterPath(point_this[0]);
+            //dataSet_this = { point_this, path_this };
+            _dataSin.push_back(dataSet_this);
+            height_now += height_each * 5;
         }
 
-        QPainterPath path(_DataSin[0]);
 
-        for (int i = 0; i < _DataSin.size() - 1; i++)
-        {
-            QPointF sp = _DataSin[i];
-            QPointF ep = _DataSin[i+1];
-            QPointF c1 = QPointF((sp.x()+ep.x())/2, (sp.y() + ep.y())/2);
-            path.quadTo(c1, ep);
+
+
+
+        //QPainterPath path(_DataSin[0]);
+        for (auto dataToEdit0 = _dataSin.begin(); dataToEdit0 != _dataSin.end(); dataToEdit0 ++) {
+            auto dataToEdit = *dataToEdit0;
+            for (int i = 0; i < dataToEdit.dataset.size() - 1; i++)
+            {
+                QPointF sp = dataToEdit.dataset[i];
+                QPointF ep = dataToEdit.dataset[i + 1];
+                QPointF c1 = QPointF((sp.x() + ep.x()) / 2, (sp.y() + ep.y()) / 2);
+                dataToEdit.path.quadTo(c1, ep);
+
+            }
+            *dataToEdit0 = dataToEdit;
         }
-        QPen pen(Qt::black);
-        QGraphicsPathItem* pathItem = new QGraphicsPathItem(path);
-        _scene1->addItem(pathItem);
+        foreach(data_set dataToEdit, _dataSin)
+        {
+            QGraphicsPathItem* pathItem = new QGraphicsPathItem(dataToEdit.path);
+            _scene1->addItem(pathItem);
+        }
         std::cout << "_scene1 done\n";
         this->setScene(_scene1);
         this->setRenderHint(QPainter::Antialiasing, true);
@@ -192,7 +225,8 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
     {
         _scene2 = new QGraphicsScene;
         //临时, 之后y轴大小会更改为图片大小, x轴则会根据结构内的数据更改
-        width = this->viewport()->width();
+        //width = this->viewport()->width();
+        width = _scene1->width();
         height = this->viewport()->height() - 17;
         qDebug() << "Width: " << width << "Height: " << height;
         QPixmap img_pix(width, height);
