@@ -1,0 +1,5 @@
+﻿  MyGraphicScene.cpp
+e:\qt files\plot\mygraphicscene.cpp(294): warning C4189: “tick_interval”: 局部变量已初始化但不引用
+e:\qt files\plot\mygraphicscene.cpp(273): warning C4189: “width_each”: 局部变量已初始化但不引用
+e:\qt files\plot\mygraphicscene.cpp(295): warning C4189: “tick_length”: 局部变量已初始化但不引用
+  plot.vcxproj -> E:\Qt files\plot\release\plot.exe

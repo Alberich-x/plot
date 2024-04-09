@@ -1,0 +1,6 @@
+﻿  MyGraphicScene.cpp
+e:\qt files\plot\mygraphicscene.cpp(43): warning C4305: “+=”: 从“double”到“float”截断
+e:\qt files\plot\mygraphicscene.cpp(156): warning C4189: “tick_interval”: 局部变量已初始化但不引用
+e:\qt files\plot\mygraphicscene.cpp(135): warning C4189: “width_each”: 局部变量已初始化但不引用
+e:\qt files\plot\mygraphicscene.cpp(157): warning C4189: “tick_length”: 局部变量已初始化但不引用
+  plot.vcxproj -> E:\Qt files\plot\debug\plot.exe
