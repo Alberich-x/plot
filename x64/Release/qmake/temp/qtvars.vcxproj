@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\TMS\AppData\Local\Temp\dm22jey4.ded;D:\QT\QT5\5.14.1\msvc2017_64\include;D:\QT\QT5\5.14.1\msvc2017_64\include\QtSvg;D:\QT\QT5\5.14.1\msvc2017_64\include\QtPrintSupport;D:\QT\QT5\5.14.1\msvc2017_64\include\QtWidgets;D:\QT\QT5\5.14.1\msvc2017_64\include\Qt3DAnimation;D:\QT\QT5\5.14.1\msvc2017_64\include\Qt3DExtras;D:\QT\QT5\5.14.1\msvc2017_64\include\Qt3DRender;D:\QT\QT5\5.14.1\msvc2017_64\include\Qt3DInput;D:\QT\QT5\5.14.1\msvc2017_64\include\Qt3DLogic;D:\QT\QT5\5.14.1\msvc2017_64\include\Qt3DCore;D:\QT\QT5\5.14.1\msvc2017_64\include\QtGamepad;D:\QT\QT5\5.14.1\msvc2017_64\include\QtGui;D:\QT\QT5\5.14.1\msvc2017_64\include\QtANGLE;D:\QT\QT5\5.14.1\msvc2017_64\include\QtNetwork;D:\QT\QT5\5.14.1\msvc2017_64\include\QtCore;C:\Users\TMS\AppData\Local\Temp\dm22jey4.ded;/include;D:\QT\QT5\5.14.1\msvc2017_64\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\TMS\AppData\Local\Temp\30mdfhsy.kb3;D:\QT\QT5\5.14.1\msvc2017_64\include;D:\QT\QT5\5.14.1\msvc2017_64\include\QtWidgets;D:\QT\QT5\5.14.1\msvc2017_64\include\QtGui;D:\QT\QT5\5.14.1\msvc2017_64\include\QtANGLE;D:\QT\QT5\5.14.1\msvc2017_64\include\QtCore;C:\Users\TMS\AppData\Local\Temp\30mdfhsy.kb3;/include;D:\QT\QT5\5.14.1\msvc2017_64\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>.\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -42,7 +42,7 @@
       <ExceptionHandling>Sync</ExceptionHandling>
       <ObjectFileName>.\</ObjectFileName>
       <Optimization>MaxSpeed</Optimization>
-      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;NDEBUG;QT_NO_DEBUG;QT_SVG_LIB;QT_PRINTSUPPORT_LIB;QT_WIDGETS_LIB;QT_3DANIMATION_LIB;QT_3DEXTRAS_LIB;QT_3DRENDER_LIB;QT_3DINPUT_LIB;QT_3DLOGIC_LIB;QT_3DCORE_LIB;QT_GAMEPAD_LIB;QT_GUI_LIB;QT_NETWORK_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;NDEBUG;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <ProgramDataBaseFileName></ProgramDataBaseFileName>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -51,7 +51,7 @@
       <WarningLevel>TurnOffAllWarnings</WarningLevel>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt5Svg.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt5PrintSupport.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt5Widgets.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt53DAnimation.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt53DExtras.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt53DRender.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt53DInput.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt53DLogic.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt53DCore.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt5Gamepad.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt5Gui.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt5Network.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt5Core.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\qtmain.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt5Widgets.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt5Gui.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt5Core.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\qtmain.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\openssl\lib;C:\Utils\my_sql\mysql-5.7.25-winx64\lib;C:\Utils\postgresql\pgsql\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>&quot;/MANIFESTDEPENDENCY:type=&apos;win32&apos; name=&apos;Microsoft.Windows.Common-Controls&apos; version=&apos;6.0.0.0&apos; publicKeyToken=&apos;6595b64144ccf1df&apos; language=&apos;*&apos; processorArchitecture=&apos;*&apos;&quot; %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
@@ -70,7 +70,7 @@
       <WarningLevel>0</WarningLevel>
     </Midl>
     <ResourceCompile>
-      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;NDEBUG;QT_NO_DEBUG;QT_SVG_LIB;QT_PRINTSUPPORT_LIB;QT_WIDGETS_LIB;QT_3DANIMATION_LIB;QT_3DEXTRAS_LIB;QT_3DRENDER_LIB;QT_3DINPUT_LIB;QT_3DLOGIC_LIB;QT_3DCORE_LIB;QT_GAMEPAD_LIB;QT_GUI_LIB;QT_NETWORK_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;NDEBUG;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>

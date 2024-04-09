@@ -18,13 +18,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     MyGraphicScene.cpp \
     main.cpp \
-    plot.cpp \
-    qcustomplot.cpp
+    plot.cpp
 
 HEADERS += \
     MyGraphicsScene.h \
-    plot.h \
-    qcustomplot.h
+    plot.h
 
 FORMS += \
     plot.ui
@@ -36,9 +34,3 @@ TRANSLATIONS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
-win32:CONFIG(release, debug|release): LIBS += -LD:/openCV/opencv/build/x64/vc15/lib/ -lopencv_world440
-else:win32:CONFIG(debug, debug|release): LIBS += -LD:/openCV/opencv/build/x64/vc15/lib/ -lopencv_world440d
-
-INCLUDEPATH += D:/openCV/opencv/build/include
-DEPENDPATH += D:/openCV/opencv/build/include

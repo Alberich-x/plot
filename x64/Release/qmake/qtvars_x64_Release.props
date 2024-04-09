@@ -1,11 +1,11 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-<Qt_DEFINES_>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;NDEBUG;QT_NO_DEBUG;QT_SVG_LIB;QT_PRINTSUPPORT_LIB;QT_WIDGETS_LIB;QT_3DANIMATION_LIB;QT_3DEXTRAS_LIB;QT_3DRENDER_LIB;QT_3DINPUT_LIB;QT_3DLOGIC_LIB;QT_3DCORE_LIB;QT_GAMEPAD_LIB;QT_GUI_LIB;QT_NETWORK_LIB;QT_CORE_LIB</Qt_DEFINES_>
-<Qt_INCLUDEPATH_>C:\Users\TMS\AppData\Local\Temp\dm22jey4.ded;D:\QT\QT5\5.14.1\msvc2017_64\include;D:\QT\QT5\5.14.1\msvc2017_64\include\QtSvg;D:\QT\QT5\5.14.1\msvc2017_64\include\QtPrintSupport;D:\QT\QT5\5.14.1\msvc2017_64\include\QtWidgets;D:\QT\QT5\5.14.1\msvc2017_64\include\Qt3DAnimation;D:\QT\QT5\5.14.1\msvc2017_64\include\Qt3DExtras;D:\QT\QT5\5.14.1\msvc2017_64\include\Qt3DRender;D:\QT\QT5\5.14.1\msvc2017_64\include\Qt3DInput;D:\QT\QT5\5.14.1\msvc2017_64\include\Qt3DLogic;D:\QT\QT5\5.14.1\msvc2017_64\include\Qt3DCore;D:\QT\QT5\5.14.1\msvc2017_64\include\QtGamepad;D:\QT\QT5\5.14.1\msvc2017_64\include\QtGui;D:\QT\QT5\5.14.1\msvc2017_64\include\QtANGLE;D:\QT\QT5\5.14.1\msvc2017_64\include\QtNetwork;D:\QT\QT5\5.14.1\msvc2017_64\include\QtCore;C:\Users\TMS\AppData\Local\Temp\dm22jey4.ded;/include;D:\QT\QT5\5.14.1\msvc2017_64\mkspecs\win32-msvc</Qt_INCLUDEPATH_>
+<Qt_DEFINES_>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;NDEBUG;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB</Qt_DEFINES_>
+<Qt_INCLUDEPATH_>C:\Users\TMS\AppData\Local\Temp\30mdfhsy.kb3;D:\QT\QT5\5.14.1\msvc2017_64\include;D:\QT\QT5\5.14.1\msvc2017_64\include\QtWidgets;D:\QT\QT5\5.14.1\msvc2017_64\include\QtGui;D:\QT\QT5\5.14.1\msvc2017_64\include\QtANGLE;D:\QT\QT5\5.14.1\msvc2017_64\include\QtCore;C:\Users\TMS\AppData\Local\Temp\30mdfhsy.kb3;/include;D:\QT\QT5\5.14.1\msvc2017_64\mkspecs\win32-msvc</Qt_INCLUDEPATH_>
 <Qt_STDCPP_></Qt_STDCPP_>
 <Qt_RUNTIME_>MultiThreadedDLL</Qt_RUNTIME_>
 <Qt_CL_OPTIONS_>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding</Qt_CL_OPTIONS_>
-<Qt_LIBS_>D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt5Svg.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt5PrintSupport.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt5Widgets.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt53DAnimation.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt53DExtras.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt53DRender.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt53DInput.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt53DLogic.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt53DCore.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt5Gamepad.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt5Gui.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt5Network.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt5Core.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\qtmain.lib;shell32.lib</Qt_LIBS_>
+<Qt_LIBS_>D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt5Widgets.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt5Gui.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\Qt5Core.lib;D:\QT\QT5\5.14.1\msvc2017_64\lib\qtmain.lib;shell32.lib</Qt_LIBS_>
 <Qt_LINK_OPTIONS_>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"</Qt_LINK_OPTIONS_>
 <QMake_QT_SYSROOT_></QMake_QT_SYSROOT_>
 <QMake_QT_INSTALL_PREFIX_>D:/QT/QT5/5.14.1/msvc2017_64</QMake_QT_INSTALL_PREFIX_>
@@ -37,7 +37,7 @@
     <QtBkup_QtInstall
       >5.14.1_msvc2017_64</QtBkup_QtInstall>
     <QtBkup_QtModules
-      >core;gui;svg;widgets;printsupport;3dcore;3danimation;3dextras;3dinput;3dlogic;3drender</QtBkup_QtModules>
+      >core;gui;widgets</QtBkup_QtModules>
     <QtBkup_QtPathBinaries
       >bin</QtBkup_QtPathBinaries>
     <QtBkup_QtPathLibraryExecutables

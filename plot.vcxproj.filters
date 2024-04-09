@@ -47,21 +47,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MyGraphicScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="plot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MyGraphicScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="plot.h">
+    <QtMoc Include="MyGraphicsScene.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="MyGraphicsScene.h">
+    <QtMoc Include="plot.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
