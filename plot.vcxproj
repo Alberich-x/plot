@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{4BB912B4-4E7C-3D97-9EC9-D6ED574E6098}</ProjectGuid>
+    <ProjectGuid>{EF7ECD63-F58C-3DE2-BCF0-48B3C8E62456}</ProjectGuid>
     <RootNamespace>plot</RootNamespace>
     <Keyword>QtVS_v304</Keyword>
     <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
@@ -20,7 +20,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <OutputDirectory>release\</OutputDirectory>
     <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
     <CharacterSet>NotSet</CharacterSet>
@@ -29,7 +29,7 @@
     <PrimaryOutput>plot</PrimaryOutput>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <OutputDirectory>debug\</OutputDirectory>
     <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
     <CharacterSet>NotSet</CharacterSet>
@@ -74,7 +74,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;release;/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>release\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
       <DebugInformationFormat>None</DebugInformationFormat>
@@ -116,7 +116,7 @@
     </ResourceCompile>
     <QtMoc>
       <CompilerFlavor>msvc</CompilerFlavor>
-      <Include>E:/Qt files/plot/$(Configuration)/moc_predefs.h</Include>
+      <Include>./$(Configuration)/moc_predefs.h</Include>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <DynamicSource>output</DynamicSource>
       <QtMocDir>$(Configuration)</QtMocDir>
@@ -131,7 +131,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.;debug;/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>debug\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -156,7 +156,7 @@
       <IgnoreImportLibrary>true</IgnoreImportLibrary>
       <OutputFile>$(OutDir)\plot.exe</OutputFile>
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Link>
     <Midl>
@@ -174,7 +174,7 @@
     </QtUic>
     <QtMoc>
       <CompilerFlavor>msvc</CompilerFlavor>
-      <Include>E:/Qt files/plot/$(Configuration)/moc_predefs.h</Include>
+      <Include>./$(Configuration)/moc_predefs.h</Include>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <DynamicSource>output</DynamicSource>
       <QtMocDir>$(Configuration)</QtMocDir>
@@ -195,14 +195,14 @@
       <FileType>Document</FileType>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\mkspecs\features\data\dummy.cpp;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">cl -Bx"$(QTDIR)\bin\qmake.exe" -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zi -MDd -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E $(QTDIR)\mkspecs\features\data\dummy.cpp 2&gt;NUL &gt;debug\moc_predefs.h</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">cl -Bx"$(QTDIR)\bin\qmake.exe" -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -Zi -MDd -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E $(QTDIR)\mkspecs\features\data\dummy.cpp 2&gt;NUL &gt;debug\moc_predefs.h</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generate moc_predefs.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\moc_predefs.h;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="release\moc_predefs.h.cbt">
       <FileType>Document</FileType>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\mkspecs\features\data\dummy.cpp;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">cl -Bx"$(QTDIR)\bin\qmake.exe" -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -O2 -MD -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E $(QTDIR)\mkspecs\features\data\dummy.cpp 2&gt;NUL &gt;release\moc_predefs.h</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">cl -Bx"$(QTDIR)\bin\qmake.exe" -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -O2 -MD -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E $(QTDIR)\mkspecs\features\data\dummy.cpp 2&gt;NUL &gt;release\moc_predefs.h</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generate moc_predefs.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\moc_predefs.h;%(Outputs)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>

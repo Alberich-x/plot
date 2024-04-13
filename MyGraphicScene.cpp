@@ -35,22 +35,13 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
 
 
 
-    case 4: //结合并显示
+    case 4: //显示结合scene
     {
-
-        QGraphicsScene* combinedScene = new QGraphicsScene;
-        foreach(QGraphicsItem * item, _scene2->items()) {
-            combinedScene->addItem(item);
-        }
-
-        foreach(QGraphicsItem * item, _scene1->items()) {
-            combinedScene->addItem(item);
-        }
-
+        QGraphicsView::paintEvent(event);
         // 设置场景矩形以适应所有项
-        combinedScene->setSceneRect(combinedScene->itemsBoundingRect());
+        //combinedScene->setSceneRect(combinedScene->itemsBoundingRect());
         this->setScene(nullptr);
-        this->setScene(combinedScene);
+        this->setScene(_sceneCS);
         this->setRenderHint(QPainter::Antialiasing, true);
         this->setRenderHint(QPainter::SmoothPixmapTransform, true);
         flag = 0;
@@ -58,19 +49,70 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
     }
 
 
-    case 5://切换为纯数据
+    case 5://重新绘制
     {
-        qDebug() << "Set scene to _scene1";
-        this->setScene(nullptr);
-        this->setScene(_scene1);
-        this->setRenderHint(QPainter::Antialiasing, true);
-        this->setRenderHint(QPainter::SmoothPixmapTransform, true);
-        flag = 0;
+        QGraphicsView::paintEvent(event);
+
+        QVector<qreal> dashes;
+        dashes << 9 << 5;
+        QPen pen;
+
+
+        _painterViewport = new QPainter(viewport());
+        // 清除之前的内容
+        _painterViewport->fillRect(viewport()->rect(), Qt::transparent);
+
+
+
+        pen.setDashPattern(dashes);
+        _painterViewport->setPen(pen);
+        // 清除之前的内容
+        //_painterViewport->fillRect(viewport()->rect(), Qt::transparent);
+
+
+        //// *非常重要, 需要根据当前视图坐标进行寻找坐标, 然后根据所获得的场景坐标进行转换*
+        //QTransform viewtransform = viewportTransform();
+        //QRectF visibleRect = viewport()->rect();
+        //QRectF sceneRect = viewtransform.inverted().mapRect(visibleRect);
+        //qDebug() << "SceneRect: " << sceneRect;
+
+
+        qreal spv = _selectRec.topLeft().y();
+        qreal epv = _selectRec.bottomRight().y();
+        qreal height_each = qreal(viewport()->height()) / (10 * 5);
+        //for (int i = 0; i < 5; i++)
+        //{
+        //    _painterViewport->drawLine(0, height_each * 5 *(i+1), viewport()->width(), height_each * 5 * (i + 1));
+        //}
+
+        qreal first_line = spv + (height_each * 5 - (fmod(spv, height_each * 5)));
+        qreal last_line = epv - (fmod(epv, height_each * 5));
+        qDebug() << "spv: " << spv << "epv: " << epv << "height_each: " << height_each * 5;
+        qDebug() << "first_line:" << first_line << "last_line:" << last_line;
+        auto numberOfLine = (last_line - first_line) / (height_each * 5);
+        qDebug() << "NumberOfLine_cal: " << numberOfLine;
+        if (last_line < first_line)
+        {
+            qDebug() << "No hline";
+            break;
+        }
+
+
+        numberOfLine += 1;
+
+        qreal ratio_rect = (epv - spv) / (viewport()->height());
+        qreal interval_rect = height_each * 5 / ratio_rect;
+        qDebug() << "interval_rect" << interval_rect;
+        qreal line_iter = (first_line - spv) / (epv - spv) * viewport()->height();
+        qreal length = viewport()->width();
+
+        for (int i = 0; i < numberOfLine; i++)
+        {
+            _painterViewport->drawLine(0, line_iter, length, line_iter);
+            line_iter += interval_rect;
+        }
+        flag = 1;
         break;
-
-
-
-
     }
 
  
@@ -82,11 +124,6 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
 
     case 6:
     {
-
-
-
-
-
         QGraphicsView::paintEvent(event);
         
         QVector<qreal> dashes;
@@ -106,15 +143,15 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
         //_painterViewport->fillRect(viewport()->rect(), Qt::transparent);
 
 
-        // *非常重要, 需要根据当前视图坐标进行寻找坐标, 然后根据所获得的场景坐标进行转换*
-        QTransform viewtransform = viewportTransform();
-        QRectF visibleRect = viewport()->rect();
-        QRectF sceneRect = viewtransform.inverted().mapRect(visibleRect);
-        qDebug() << "SceneRect: " << sceneRect;
+        //// *非常重要, 需要根据当前视图坐标进行寻找坐标, 然后根据所获得的场景坐标进行转换*
+        //QTransform viewtransform = viewportTransform();
+        //QRectF visibleRect = viewport()->rect();
+        //QRectF sceneRect = viewtransform.inverted().mapRect(visibleRect);
+        //qDebug() << "SceneRect: " << sceneRect;
 
 
-        qreal spv = sceneRect.topLeft().y();
-        qreal epv = sceneRect.bottomRight().y();
+        qreal spv = _selectRec.topLeft().y();
+        qreal epv = _selectRec.bottomRight().y();
         qreal height_each = qreal(viewport()->height()) / (10 * 5);
         //for (int i = 0; i < 5; i++)
         //{
@@ -137,10 +174,10 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
         numberOfLine += 1;
 
         qreal ratio_rect = (epv - spv) / (viewport()->height());
-        qDebug() << "My Caculate:" << ratio_rect << "Gpt Caculate: " << ratio_gpt;
         qreal interval_rect = height_each * 5 / ratio_rect;
         qDebug() << "interval_rect" << interval_rect;
         qreal line_iter = (first_line - spv) / (epv - spv) * viewport()->height();
+        qDebug() << "Line_iter: " << line_iter;
         qreal length = viewport()->width();
 
         for (int i = 0; i < numberOfLine; i++)
@@ -148,13 +185,69 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
             _painterViewport->drawLine(0, line_iter, length, line_iter);
             line_iter += interval_rect;
         }
+        
+        //进行图片缩放
+        spv = _selectRecNow.topLeft().y();
+        epv = _selectRecNow.bottomRight().y();
+        height_each = qreal(viewport()->height()) / (10 * 5);
 
 
 
 
+        qreal scale_horizon = float(viewport()->width()) / _selectRec.width();
+        qreal scale_vertical = float(viewport()->height()) / _selectRec.height();
+
+        qDebug() << "First line: " << first_line << "LastLine: " << last_line;
+        int first_data = first_line / (height_each * 5);
+        int last_data = last_line / (height_each * 5);
+        int number_data = last_data - first_data;
+        qreal data_iter = (first_line - spv) / (epv - spv) * viewport()->height();
+        qDebug() << "data_iter: " << data_iter;
+
+        //QPointF vp_lt = mapToScene(viewport()->rect().topLeft());
+        //QPointF vp_fl = mapToScene(QPoint(0, first_line));
 
 
 
+
+        QVector<QPainterPath> pp_this;
+        qreal cnt_path = 0;
+        
+
+
+        for (int i = first_data; i <= last_data; i++)
+        {
+            QPainterPath path_this = QPainterPath(QPointF(_dataSin[i].dataset[0].x(), _dataSin[i].dataset[0].y()));
+            for (int j = 1; j < _dataSin[i].dataset.size() - 1; j++)
+            {
+                //这段之后将想办法优化时间复杂度
+                QPointF sp = _dataSin[i].dataset[j];
+                sp.setY((sp.y() + data_iter) / ratio_rect);
+                sp.setX(sp.x() / ratio_rect);
+                QPointF ep = _dataSin[i].dataset[j + 1];
+                ep.setY((ep.y() + data_iter) / ratio_rect);
+                ep.setX(ep.x() / ratio_rect);
+                QPointF c1 = QPointF((sp.x()+ep.x())/2, (sp.y() + ep.y())/2);
+                path_this.quadTo(c1, ep);
+            }
+            data_iter += interval_rect;
+            
+            pp_this.push_back(mapToScene(path_this));
+        }
+        _scene5 = new QGraphicsScene();
+        foreach(QPainterPath x, pp_this)
+        {
+            QGraphicsPathItem* path_item = new QGraphicsPathItem(x);
+            _scene5->addItem(path_item);
+        }
+
+        
+        this->setScene(nullptr);
+        this->setScene(_scene5);
+        this->setRenderHint(QPainter::Antialiasing, true);
+        this->setRenderHint(QPainter::SmoothPixmapTransform, true);
+        
+        
         flag = 1;
         break;
     }
@@ -167,44 +260,40 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
         qreal height_each = this->viewport()->height() / (10 * 5);
         qreal height_now = height_each * 5;
         int cnt_ite = 0;
-        //foreach(data_set dataToEdit, _dataSin) {
-        //    for (qreal i = 0; i < 5000; i += 0.1)
-        //    {
-        //        dataToEdit.dataset.push_back(QPointF(i * 50, qreal(sin(i)) * 50 + height_each * 5));
-        //        qDebug() << i <<dataToEdit.dataset;
-        //    }
-        //    dataToEdit.path.addPath(QPainterPath(dataToEdit.dataset[0]));
-        //}
         for (int i = 0; i < 10; i++)
         {
             QVector<QPointF> point_this;
             data_set dataSet_this;
             for (qreal j = 0; j < 5000; j += 0.1)
             {
-                point_this.push_back(QPointF(j * 50, qreal(sin(j)) * 30 + height_now));
+                point_this.push_back(QPointF(j * 50, qreal(sin(j)) * 30));
             }
             dataSet_this.dataset = point_this;
             dataSet_this.path = QPainterPath(point_this[0]);
             //dataSet_this = { point_this, path_this };
             _dataSin.push_back(dataSet_this);
-            height_now += height_each * 5;
         }
 
 
 
 
-
+        int cnt = 0;
         //QPainterPath path(_DataSin[0]);
         for (auto dataToEdit0 = _dataSin.begin(); dataToEdit0 != _dataSin.end(); dataToEdit0 ++) {
             auto dataToEdit = *dataToEdit0;
-            for (int i = 0; i < dataToEdit.dataset.size() - 1; i++)
+            cnt++;
+            for (int i = 1; i < dataToEdit.dataset.size() - 1; i++)
             {
                 QPointF sp = dataToEdit.dataset[i];
+                sp.setY(sp.y() + height_each*5  * cnt);
                 QPointF ep = dataToEdit.dataset[i + 1];
+                ep.setY(ep.y() + height_each*5 * cnt);
                 QPointF c1 = QPointF((sp.x() + ep.x()) / 2, (sp.y() + ep.y()) / 2);
                 dataToEdit.path.quadTo(c1, ep);
-
             }
+            QPainterPath::Element firstElement = dataToEdit.path.elementAt(0);
+            firstElement.y += cnt * height_each * 5 ;
+            dataToEdit.path.setElementPositionAt(0, firstElement.x, firstElement.y);
             *dataToEdit0 = dataToEdit;
         }
         foreach(data_set dataToEdit, _dataSin)
@@ -285,7 +374,8 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
 
         // 设置场景矩形以适应所有项
         combinedScene->setSceneRect(combinedScene->itemsBoundingRect());
-        
+        _sceneCS = new QGraphicsScene;
+        _sceneCS = combinedScene;
         this->setScene(combinedScene);
         this->setRenderHint(QPainter::Antialiasing, true);
         this->setRenderHint(QPainter::SmoothPixmapTransform, true);
@@ -350,10 +440,17 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
         this->setRenderHint(QPainter::Antialiasing, true);
         this->setRenderHint(QPainter::SmoothPixmapTransform, true);
         flag = 0;
+    }
+
+    case 10: {
+        QGraphicsView::paintEvent(event);
+        break;
+    }
 
 
 
-	}
+
+
 
 	default:
 		break;

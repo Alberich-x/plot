@@ -14,7 +14,7 @@ class MyGraphicsView : public QGraphicsView {
 public:
 	MyGraphicsView(QWidget* parent = nullptr) : QGraphicsView(parent) {
 		update();
-		this->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+		//this->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	};
 	MyGraphicsView(QGraphicsScene* scene, QWidget* parent = nullptr) : QGraphicsView(scene, parent) {};
 private:
@@ -27,6 +27,8 @@ private:
 	QGraphicsScene* _scene2;	//存储初始大小刻度线
 	QGraphicsScene* _scene3;	//临时scene, 存储动态坐标轴
 	QGraphicsScene* _scene4;	//存储初始化页面图形, 可以在使用后删除
+	QGraphicsScene* _scene5;
+	QGraphicsScene* _sceneCS;
 
 	float width;
 	float height;
@@ -107,8 +109,8 @@ protected:
 			qDebug() << "reset " << flag;
 			this->resetTransform();
 			viewport()->repaint();
-			//flag = 4;
-			//viewport()->repaint();
+			flag = 4;
+			viewport()->repaint();
 			flag = 1;
 		}
 		default:
@@ -127,18 +129,19 @@ protected:
 			//viewport()->repaint();
 
 
-			_selectRecNow = caculateMinRect();
+			//_selectRecNow = caculateMinRect();
 			flag = 0;
-			_selectRec = QRectF();
+			//_selectRec = QRectF();
 
 			_isSelect = false;
-			QRectF _thisRec = mapToScene(QRect(_startPos, event->pos())).boundingRect();
-			_thisRec = mapToScene(QRect(_selectRecNow.topLeft().toPoint(), _selectRecNow.bottomRight().toPoint())).boundingRect();
-			flag = 5;
-			viewport()->repaint();
-			fitInView(_thisRec, Qt::KeepAspectRatio);
-			_isScale = true;
-			viewport()->repaint();
+			QRectF _selectRecNow = mapToScene(QRect(_startPos, event->pos())).boundingRect();
+			_selectRecNow = mapToScene(QRect(_selectRec.topLeft().toPoint(), _selectRec.bottomRight().toPoint())).boundingRect();
+			//旧案, 用于直接缩放
+			//flag = 5;
+			//viewport()->repaint();
+			//fitInView(_thisRec, Qt::KeepAspectRatio);
+			//_isScale = true;
+			//viewport()->repaint();
 			flag = 6;
 			viewport()->repaint();
 			flag = 1;
@@ -170,7 +173,7 @@ protected:
 			viewport()->update();
 			int delta = event->angleDelta().y();
 			horizontalScrollBar()->setValue(horizontalScrollBar()->value() - delta);
-			flag = 6;
+			flag = 5;
 			break;
 		}
 		default:
