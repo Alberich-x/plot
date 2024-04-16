@@ -77,8 +77,8 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
         //qDebug() << "SceneRect: " << sceneRect;
 
 
-        qreal spv = _selectRec.topLeft().y();
-        qreal epv = _selectRec.bottomRight().y();
+        qreal spv = _selectRecNow.topLeft().y();
+        qreal epv = _selectRecNow.bottomRight().y();
         qreal height_each = qreal(viewport()->height()) / (10 * 5);
         //for (int i = 0; i < 5; i++)
         //{
@@ -87,10 +87,10 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
 
         qreal first_line = spv + (height_each * 5 - (fmod(spv, height_each * 5)));
         qreal last_line = epv - (fmod(epv, height_each * 5));
-        qDebug() << "spv: " << spv << "epv: " << epv << "height_each: " << height_each * 5;
-        qDebug() << "first_line:" << first_line << "last_line:" << last_line;
+        //qDebug() << "spv: " << spv << "epv: " << epv << "height_each: " << height_each * 5;
+        //qDebug() << "first_line:" << first_line << "last_line:" << last_line;
         auto numberOfLine = (last_line - first_line) / (height_each * 5);
-        qDebug() << "NumberOfLine_cal: " << numberOfLine;
+        //qDebug() << "NumberOfLine_cal: " << numberOfLine;
         if (last_line < first_line)
         {
             qDebug() << "No hline";
@@ -102,7 +102,7 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
 
         qreal ratio_rect = (epv - spv) / (viewport()->height());
         qreal interval_rect = height_each * 5 / ratio_rect;
-        qDebug() << "interval_rect" << interval_rect;
+        //qDebug() << "interval_rect" << interval_rect;
         qreal line_iter = (first_line - spv) / (epv - spv) * viewport()->height();
         qreal length = viewport()->width();
 
@@ -111,6 +111,7 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
             _painterViewport->drawLine(0, line_iter, length, line_iter);
             line_iter += interval_rect;
         }
+        _painterViewport->end();
         flag = 1;
         break;
     }
@@ -124,6 +125,10 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
 
     case 6:
     {
+
+        QPointF ltpv = mapToScene(viewport()->rect().topLeft());
+        QRectF newSceneRect = sceneRect().translated(QPointF(0, 0) - ltpv);
+        setSceneRect(newSceneRect);
         QGraphicsView::paintEvent(event);
         
         QVector<qreal> dashes;
@@ -150,9 +155,15 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
         //qDebug() << "SceneRect: " << sceneRect;
 
 
-        qreal spv = _selectRec.topLeft().y();
-        qreal epv = _selectRec.bottomRight().y();
+        qreal spv = _selectRecNow.topLeft().y();
+        qreal epv = _selectRecNow.bottomRight().y();
         qreal height_each = qreal(viewport()->height()) / (10 * 5);
+
+        qreal sph = _selectRecNow.topLeft().x();
+        qreal eph = _selectRecNow.bottomRight().x();
+
+
+
         //for (int i = 0; i < 5; i++)
         //{
         //    _painterViewport->drawLine(0, height_each * 5 *(i+1), viewport()->width(), height_each * 5 * (i + 1));
@@ -180,16 +191,16 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
         qDebug() << "Line_iter: " << line_iter;
         qreal length = viewport()->width();
 
-        for (int i = 0; i < numberOfLine; i++)
-        {
-            _painterViewport->drawLine(0, line_iter, length, line_iter);
-            line_iter += interval_rect;
-        }
+        //for (int i = 0; i < numberOfLine; i++)
+        //{
+        //    _painterViewport->drawLine(0, line_iter, length, line_iter);
+        //    line_iter += interval_rect;
+        //}
         
         //进行图片缩放
-        spv = _selectRecNow.topLeft().y();
-        epv = _selectRecNow.bottomRight().y();
-        height_each = qreal(viewport()->height()) / (10 * 5);
+        //spv = _selectRecNow.topLeft().y();
+        //epv = _selectRecNow.bottomRight().y();
+        //height_each = qreal(viewport()->height()) / (10 * 5);
 
 
 
@@ -213,7 +224,12 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
         QVector<QPainterPath> pp_this;
         qreal cnt_path = 0;
         
+        QRectF viewportRect = viewport()->rect();
+        // 设置场景的大小为与视口相同
+        scene()->setSceneRect(viewportRect);
 
+        qreal ratio_horizon = (eph - sph) / viewport()->width();
+        qreal ratio_vertical = (epv - spv) / viewport()->height();
 
         for (int i = first_data; i <= last_data; i++)
         {
@@ -222,38 +238,60 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
             {
                 //这段之后将想办法优化时间复杂度
                 QPointF sp = _dataSin[i].dataset[j];
-                sp.setY((sp.y() + data_iter) / ratio_rect);
-                sp.setX(sp.x() / ratio_rect);
+                sp.setY(sp.y() / ratio_vertical + data_iter);
+                sp.setX(sp.x() / ratio_horizon );
                 QPointF ep = _dataSin[i].dataset[j + 1];
-                ep.setY((ep.y() + data_iter) / ratio_rect);
-                ep.setX(ep.x() / ratio_rect);
+                ep.setY(ep.y() / ratio_vertical + data_iter);
+                ep.setX(ep.x() / ratio_horizon);
                 QPointF c1 = QPointF((sp.x()+ep.x())/2, (sp.y() + ep.y())/2);
                 path_this.quadTo(c1, ep);
             }
             data_iter += interval_rect;
-            
+
             pp_this.push_back(mapToScene(path_this));
+
+            
         }
+
+
         _scene5 = new QGraphicsScene();
+        
         foreach(QPainterPath x, pp_this)
         {
             QGraphicsPathItem* path_item = new QGraphicsPathItem(x);
             _scene5->addItem(path_item);
         }
 
-        
-        this->setScene(nullptr);
+
+
+
+
+
+        //this->setScene(nullptr);
         this->setScene(_scene5);
-        this->setRenderHint(QPainter::Antialiasing, true);
-        this->setRenderHint(QPainter::SmoothPixmapTransform, true);
+        //this->setRenderHint(QPainter::Antialiasing, true);
+        //this->setRenderHint(QPainter::SmoothPixmapTransform, true);
         
-        
-        flag = 1;
+        for (int i = 0; i < numberOfLine; i++)
+        {
+            _painterViewport->drawLine(0, line_iter, length, line_iter);
+            line_iter += interval_rect;
+        }
+
+        _painterViewport->end();
+        //flag = 5;
+        connect(_scene5, &QGraphicsScene::changed, this, [this]() {
+            flag = 5;
+            this->update();
+            });
         break;
     }
 
     case 7:     //绘制数据测试.首先实现sin函数
     {
+        QPointF ltpv = mapToScene(viewport()->rect().topLeft());
+        QRectF newSceneRect = sceneRect().translated(QPointF(0, 0) - ltpv);
+        setSceneRect(newSceneRect);
         _scene1 = new QGraphicsScene;
         //width = this->viewport()->width();
         height = this->viewport()->height();

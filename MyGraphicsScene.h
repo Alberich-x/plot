@@ -14,7 +14,8 @@ class MyGraphicsView : public QGraphicsView {
 public:
 	MyGraphicsView(QWidget* parent = nullptr) : QGraphicsView(parent) {
 		update();
-		//this->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+		this->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
 	};
 	MyGraphicsView(QGraphicsScene* scene, QWidget* parent = nullptr) : QGraphicsView(scene, parent) {};
 private:
@@ -63,7 +64,6 @@ private:
 			return QRectF(_selectRec.topLeft().x(), _selectRec.topLeft().y(), height_now * ratio_wh, height_now);
 		}
 	}
-
 
 
 
@@ -131,11 +131,12 @@ protected:
 
 			//_selectRecNow = caculateMinRect();
 			flag = 0;
-			//_selectRec = QRectF();
+
 
 			_isSelect = false;
-			QRectF _selectRecNow = mapToScene(QRect(_startPos, event->pos())).boundingRect();
+			//QRectF _selectRecNow = mapToScene(QRect(_startPos, event->pos())).boundingRect();
 			_selectRecNow = mapToScene(QRect(_selectRec.topLeft().toPoint(), _selectRec.bottomRight().toPoint())).boundingRect();
+			_selectRec = QRectF();
 			//旧案, 用于直接缩放
 			//flag = 5;
 			//viewport()->repaint();
@@ -143,8 +144,8 @@ protected:
 			//_isScale = true;
 			//viewport()->repaint();
 			flag = 6;
-			viewport()->repaint();
-			flag = 1;
+			//viewport()->repaint();
+			viewport()->update();
 			break;
 		}
 
