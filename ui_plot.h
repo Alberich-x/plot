@@ -11,9 +11,9 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
 #include <mygraphicsscene.h>
@@ -24,8 +24,9 @@ class Ui_plot
 {
 public:
     QWidget *centralwidget;
-    QPushButton *pushButton;
     MyGraphicsView *graphicsView;
+    QCheckBox *checkBox_zoom;
+    QCheckBox *checkBox_measure;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -36,16 +37,19 @@ public:
         plot->resize(1695, 1198);
         centralwidget = new QWidget(plot);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
-        pushButton = new QPushButton(centralwidget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(20, 20, 75, 23));
         graphicsView = new MyGraphicsView(centralwidget);
         graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
         graphicsView->setGeometry(QRect(30, 60, 1571, 1031));
+        checkBox_zoom = new QCheckBox(centralwidget);
+        checkBox_zoom->setObjectName(QString::fromUtf8("checkBox_zoom"));
+        checkBox_zoom->setGeometry(QRect(40, 30, 91, 19));
+        checkBox_measure = new QCheckBox(centralwidget);
+        checkBox_measure->setObjectName(QString::fromUtf8("checkBox_measure"));
+        checkBox_measure->setGeometry(QRect(140, 30, 91, 19));
         plot->setCentralWidget(centralwidget);
         menubar = new QMenuBar(plot);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1695, 23));
+        menubar->setGeometry(QRect(0, 0, 1695, 26));
         plot->setMenuBar(menubar);
         statusbar = new QStatusBar(plot);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -59,7 +63,8 @@ public:
     void retranslateUi(QMainWindow *plot)
     {
         plot->setWindowTitle(QCoreApplication::translate("plot", "plot", nullptr));
-        pushButton->setText(QCoreApplication::translate("plot", "PushButton", nullptr));
+        checkBox_zoom->setText(QCoreApplication::translate("plot", "\347\274\251\346\224\276", nullptr));
+        checkBox_measure->setText(QCoreApplication::translate("plot", "\346\265\213\351\207\217", nullptr));
     } // retranslateUi
 
 };

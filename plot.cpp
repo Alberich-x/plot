@@ -7,6 +7,12 @@ plot::plot(QWidget *parent)
     , ui(new Ui::plot)
 {
     ui->setupUi(this);
+    connect(ui->checkBox_zoom, &QCheckBox::clicked, this, [this]() {
+        ui->graphicsView->flag = ui->checkBox_zoom->isChecked() ? 0 : 99;
+        });
+
+
+
     //update();
     //connect(ui->pushButton, &QPushButton::clicked, this, [this]() {
     //    
@@ -91,34 +97,34 @@ plot::~plot()
 
 
 
-void plot::mousePressEvent(QMouseEvent * event)
-{
-    if (event->button() == Qt::LeftButton)
-    {
-        m_selecting = true;
-        m_selectPos = event->pos();
-        m_selectRect.setTopLeft(m_selectPos);
-        m_selectRect.setBottomRight(m_selectPos);
-        update();
-    }
-}
-
-void plot::mouseMoveEvent(QMouseEvent* event)
-{
-    if (m_selecting)
-    {
-
-        m_selectPos = event->pos();
-        m_selectRect.setBottomRight(m_selectPos);
-        update();
-    }
-}
-
-void plot::mouseReleaseEvent(QMouseEvent* event)
-{
-    if (event->button() == Qt::LeftButton)
-    {
-        m_selectRect = QRect();
-        update();
-    }
-}
+//void plot::mousePressEvent(QMouseEvent * event)
+//{
+//    if (event->button() == Qt::LeftButton)
+//    {
+//        m_selecting = true;
+//        m_selectPos = event->pos();
+//        m_selectRect.setTopLeft(m_selectPos);
+//        m_selectRect.setBottomRight(m_selectPos);
+//        update();
+//    }
+//}
+//
+//void plot::mouseMoveEvent(QMouseEvent* event)
+//{
+//    if (m_selecting)
+//    {
+//
+//        m_selectPos = event->pos();
+//        m_selectRect.setBottomRight(m_selectPos);
+//        update();
+//    }
+//}
+//
+//void plot::mouseReleaseEvent(QMouseEvent* event)
+//{
+//    if (event->button() == Qt::LeftButton)
+//    {
+//        m_selectRect = QRect();
+//        update();
+//    }
+//}

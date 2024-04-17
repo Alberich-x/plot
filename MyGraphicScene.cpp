@@ -38,13 +38,20 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
     case 4: //显示结合scene
     {
         QGraphicsView::paintEvent(event);
+        _vln = mapToScene(viewport()->rect().topLeft());
+        qreal ratio_position = _vln.x() / _scene5->width();
+
+        
+
         // 设置场景矩形以适应所有项
         //combinedScene->setSceneRect(combinedScene->itemsBoundingRect());
         this->setScene(nullptr);
         this->setScene(_sceneCS);
         this->setRenderHint(QPainter::Antialiasing, true);
         this->setRenderHint(QPainter::SmoothPixmapTransform, true);
-        flag = 0;
+        this->horizontalScrollBar()->setValue(this->_vln.x()/_scene5->width() * _scene1->width() );
+        flag = 1;
+        _isScale = false;
         break;
     }
 
@@ -52,6 +59,11 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
     case 5://重新绘制
     {
         QGraphicsView::paintEvent(event);
+
+
+
+        //qDebug() << "Resent positon: " <<  mapToScene(viewport()->rect().topLeft()) << " Width: " << _scene5->width();
+
 
         QVector<qreal> dashes;
         dashes << 9 << 5;
@@ -171,10 +183,10 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
 
         qreal first_line = spv + (height_each * 5 - (fmod(spv, height_each * 5)));
         qreal last_line = epv - (fmod(epv, height_each*5));
-        qDebug() << "spv: " << spv << "epv: " << epv << "height_each: " << height_each * 5;
-        qDebug() << "first_line:" << first_line << "last_line:" << last_line;
+        //qDebug() << "spv: " << spv << "epv: " << epv << "height_each: " << height_each * 5;
+        //qDebug() << "first_line:" << first_line << "last_line:" << last_line;
         auto numberOfLine = (last_line-first_line) / (height_each * 5) ;
-        qDebug() << "NumberOfLine_cal: " << numberOfLine;
+        //qDebug() << "NumberOfLine_cal: " << numberOfLine;
         if (last_line < first_line)
         {
             qDebug() << "No hline";
@@ -186,9 +198,9 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
 
         qreal ratio_rect = (epv - spv) / (viewport()->height());
         qreal interval_rect = height_each * 5 / ratio_rect;
-        qDebug() << "interval_rect" << interval_rect;
+        //qDebug() << "interval_rect" << interval_rect;
         qreal line_iter = (first_line - spv) / (epv - spv) * viewport()->height();
-        qDebug() << "Line_iter: " << line_iter;
+        //qDebug() << "Line_iter: " << line_iter;
         qreal length = viewport()->width();
 
         //for (int i = 0; i < numberOfLine; i++)
@@ -208,12 +220,12 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
         qreal scale_horizon = float(viewport()->width()) / _selectRec.width();
         qreal scale_vertical = float(viewport()->height()) / _selectRec.height();
 
-        qDebug() << "First line: " << first_line << "LastLine: " << last_line;
+        //qDebug() << "First line: " << first_line << "LastLine: " << last_line;
         int first_data = first_line / (height_each * 5);
         int last_data = last_line / (height_each * 5);
         int number_data = last_data - first_data;
         qreal data_iter = (first_line - spv) / (epv - spv) * viewport()->height();
-        qDebug() << "data_iter: " << data_iter;
+        //qDebug() << "data_iter: " << data_iter;
 
         //QPointF vp_lt = mapToScene(viewport()->rect().topLeft());
         //QPointF vp_fl = mapToScene(QPoint(0, first_line));
@@ -279,9 +291,15 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
         }
 
         _painterViewport->end();
+        
+
+        this->horizontalScrollBar()->setValue(sph / _scene1->width() * _scene5->width());
+
+
         //flag = 5;
         connect(_scene5, &QGraphicsScene::changed, this, [this]() {
             flag = 5;
+            _isScale = true;
             this->update();
             });
         break;
@@ -418,7 +436,7 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
         this->setRenderHint(QPainter::Antialiasing, true);
         this->setRenderHint(QPainter::SmoothPixmapTransform, true);
         
-        flag = 0;
+        flag = 99;
 
         break;
     }
@@ -482,6 +500,35 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
 
     case 10: {
         QGraphicsView::paintEvent(event);
+        break;
+    }
+
+
+
+
+    
+    case 98:
+    {
+        QGraphicsView::paintEvent(event);
+        _vln = mapToScene(viewport()->rect().topLeft());
+        qreal ratio_position = _vln.x() / _scene5->width();
+
+        // 设置场景矩形以适应所有项
+        //combinedScene->setSceneRect(combinedScene->itemsBoundingRect());
+        this->setScene(nullptr);
+        this->setScene(_sceneCS);
+        this->setRenderHint(QPainter::Antialiasing, true);
+        this->setRenderHint(QPainter::SmoothPixmapTransform, true);
+        this->horizontalScrollBar()->setValue(this->_vln.x() / _scene5->width() * _scene1->width());
+        _isScale = false;
+        this->horizontalScrollBar()->setMinimum(0);
+        break;
+    }
+
+
+    case 99: {
+        QGraphicsView::paintEvent(event);
+
         break;
     }
 

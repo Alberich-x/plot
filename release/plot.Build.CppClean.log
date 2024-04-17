@@ -1,27 +1,29 @@
-e:\qt files\plot\release\moc_plot.obj
-e:\qt files\plot\release\moc_mygraphicsscene.obj
-e:\qt files\plot\release\moc_qcustomplot.obj
-e:\qt files\plot\release\main.obj
-e:\qt files\plot\release\qcustomplot.obj
-e:\qt files\plot\release\mygraphicscene.obj
-e:\qt files\plot\release\plot.obj
-e:\qt files\plot\release\moc_predefs.h
-e:\qt files\plot\release\plot.exe
-e:\qt files\plot\release\moc_plot.cpp
+d:\code\git\qt\plot\release\mygraphicscene.obj
+d:\code\git\qt\plot\release\plot.obj
+d:\code\git\qt\plot\release\main.obj
+d:\code\git\qt\plot\release\moc_mygraphicsscene.obj
+d:\code\git\qt\plot\release\moc_plot.obj
+d:\code\git\qt\plot\release\moc_predefs.h
+d:\code\git\qt\plot\release\plot.exe
+d:\code\git\qt\plot\release\moc_mygraphicsscene.cpp
 e:\qt files\plot\ui_plot.h
+e:\qt files\plot\release\moc_plot.cpp
 e:\qt files\plot\release\moc_mygraphicsscene.cpp
-e:\qt files\plot\release\moc_qcustomplot.cpp
-e:\qt files\plot\release\plot.tlog\cl.command.1.tlog
-e:\qt files\plot\release\plot.tlog\cl.read.1.tlog
-e:\qt files\plot\release\plot.tlog\cl.write.1.tlog
-e:\qt files\plot\release\plot.tlog\custombuild.command.1.tlog
-e:\qt files\plot\release\plot.tlog\custombuild.read.1.tlog
-e:\qt files\plot\release\plot.tlog\custombuild.write.1.tlog
-e:\qt files\plot\release\plot.tlog\link.command.1.tlog
-e:\qt files\plot\release\plot.tlog\link.read.1.tlog
-e:\qt files\plot\release\plot.tlog\link.write.1.tlog
-e:\qt files\plot\release\plot.tlog\moc.read.1u.tlog
-e:\qt files\plot\release\plot.tlog\moc.write.1u.tlog
-e:\qt files\plot\release\plot.tlog\plot.write.1u.tlog
-e:\qt files\plot\release\plot.tlog\uic.read.1u.tlog
-e:\qt files\plot\release\plot.tlog\uic.write.1u.tlog
+d:\code\git\qt\plot\ui_plot.h
+d:\code\git\qt\plot\release\moc_plot.cpp
+d:\code\git\qt\plot\release\plot.tlog\cl.command.1.tlog
+d:\code\git\qt\plot\release\plot.tlog\cl.items.tlog
+d:\code\git\qt\plot\release\plot.tlog\cl.read.1.tlog
+d:\code\git\qt\plot\release\plot.tlog\cl.write.1.tlog
+d:\code\git\qt\plot\release\plot.tlog\custombuild.command.1.tlog
+d:\code\git\qt\plot\release\plot.tlog\custombuild.read.1.tlog
+d:\code\git\qt\plot\release\plot.tlog\custombuild.write.1.tlog
+d:\code\git\qt\plot\release\plot.tlog\link.command.1.tlog
+d:\code\git\qt\plot\release\plot.tlog\link.read.1.tlog
+d:\code\git\qt\plot\release\plot.tlog\link.secondary.1.tlog
+d:\code\git\qt\plot\release\plot.tlog\link.write.1.tlog
+d:\code\git\qt\plot\release\plot.tlog\moc.read.1u.tlog
+d:\code\git\qt\plot\release\plot.tlog\moc.write.1u.tlog
+d:\code\git\qt\plot\release\plot.tlog\plot.write.1u.tlog
+d:\code\git\qt\plot\release\plot.tlog\uic.read.1u.tlog
+d:\code\git\qt\plot\release\plot.tlog\uic.write.1u.tlog

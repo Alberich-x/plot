@@ -1,14 +1,33 @@
-﻿  MyGraphicScene.cpp
-D:\code\git\qt\plot\MyGraphicsScene.h(121,38): warning C4100: “event”: 未引用的形参
+﻿  Moc'ing MyGraphicsScene.h...
+  MyGraphicScene.cpp
+  main.cpp
+  plot.cpp
+D:\code\git\qt\plot\MyGraphicsScene.h(135,38): warning C4100: “event”: 未引用的形参
+  (编译源文件“main.cpp”)
+  
+D:\code\git\qt\plot\MyGraphicsScene.h(135,38): warning C4100: “event”: 未引用的形参
   (编译源文件“MyGraphicScene.cpp”)
   
-D:\code\git\qt\plot\MyGraphicScene.cpp(209,15): warning C4189: “scale_vertical”: 局部变量已初始化但不引用
-D:\code\git\qt\plot\MyGraphicScene.cpp(214,13): warning C4189: “number_data”: 局部变量已初始化但不引用
-D:\code\git\qt\plot\MyGraphicScene.cpp(225,15): warning C4189: “cnt_path”: 局部变量已初始化但不引用
-D:\code\git\qt\plot\MyGraphicScene.cpp(208,15): warning C4189: “scale_horizon”: 局部变量已初始化但不引用
-D:\code\git\qt\plot\MyGraphicScene.cpp(300,13): warning C4189: “cnt_ite”: 局部变量已初始化但不引用
-D:\code\git\qt\plot\MyGraphicScene.cpp(299,15): warning C4189: “height_now”: 局部变量已初始化但不引用
-D:\code\git\qt\plot\MyGraphicScene.cpp(456,13): warning C4189: “tick_interval”: 局部变量已初始化但不引用
-D:\code\git\qt\plot\MyGraphicScene.cpp(435,13): warning C4189: “width_each”: 局部变量已初始化但不引用
-D:\code\git\qt\plot\MyGraphicScene.cpp(457,13): warning C4189: “tick_length”: 局部变量已初始化但不引用
+D:\code\git\qt\plot\MyGraphicScene.cpp(42,15): warning C4189: “ratio_position”: 局部变量已初始化但不引用
+D:\code\git\qt\plot\MyGraphicScene.cpp(221,15): warning C4189: “scale_vertical”: 局部变量已初始化但不引用
+D:\code\git\qt\plot\MyGraphicScene.cpp(226,13): warning C4189: “number_data”: 局部变量已初始化但不引用
+D:\code\git\qt\plot\MyGraphicScene.cpp(237,15): warning C4189: “cnt_path”: 局部变量已初始化但不引用
+D:\code\git\qt\plot\MyGraphicScene.cpp(220,15): warning C4189: “scale_horizon”: 局部变量已初始化但不引用
+D:\code\git\qt\plot\MyGraphicScene.cpp(318,13): warning C4189: “cnt_ite”: 局部变量已初始化但不引用
+D:\code\git\qt\plot\MyGraphicScene.cpp(317,15): warning C4189: “height_now”: 局部变量已初始化但不引用
+D:\code\git\qt\plot\MyGraphicScene.cpp(474,13): warning C4189: “tick_interval”: 局部变量已初始化但不引用
+D:\code\git\qt\plot\MyGraphicScene.cpp(453,13): warning C4189: “width_each”: 局部变量已初始化但不引用
+D:\code\git\qt\plot\MyGraphicScene.cpp(475,13): warning C4189: “tick_length”: 局部变量已初始化但不引用
+D:\code\git\qt\plot\MyGraphicScene.cpp(514,15): warning C4189: “ratio_position”: 局部变量已初始化但不引用
+D:\code\git\qt\plot\MyGraphicsScene.h(135,38): warning C4100: “event”: 未引用的形参
+  (编译源文件“plot.cpp”)
+  
+  moc_MyGraphicsScene.cpp
+  moc_plot.cpp
+D:\code\git\qt\plot\MyGraphicsScene.h(135,38): warning C4100: “event”: 未引用的形参
+  (编译源文件“Release/moc_MyGraphicsScene.cpp”)
+  
+D:\code\git\qt\plot\MyGraphicsScene.h(135,38): warning C4100: “event”: 未引用的形参
+  (编译源文件“Release/moc_plot.cpp”)
+  
   plot.vcxproj -> D:\code\git\qt\plot\release\plot.exe

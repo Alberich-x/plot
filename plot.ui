@@ -14,19 +14,6 @@
    <string>plot</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>20</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PushButton</string>
-    </property>
-   </widget>
    <widget class="MyGraphicsView" name="graphicsView">
     <property name="geometry">
      <rect>
@@ -37,6 +24,32 @@
      </rect>
     </property>
    </widget>
+   <widget class="QCheckBox" name="checkBox_zoom">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>30</y>
+      <width>91</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>缩放</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_measure">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>30</y>
+      <width>91</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>测量</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -44,7 +57,7 @@
      <x>0</x>
      <y>0</y>
      <width>1695</width>
-     <height>23</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

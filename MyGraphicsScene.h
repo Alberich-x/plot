@@ -15,9 +15,13 @@ public:
 	MyGraphicsView(QWidget* parent = nullptr) : QGraphicsView(parent) {
 		update();
 		this->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+		this->horizontalScrollBar()->setMinimum(0);
 
 	};
 	MyGraphicsView(QGraphicsScene* scene, QWidget* parent = nullptr) : QGraphicsView(scene, parent) {};
+
+
+	int flag = 7;
 private:
 	QPainter* _painterViewport;
 
@@ -37,10 +41,12 @@ private:
 	QRectF _selectRec, _selectRecNow, _thisRec;
 	QPoint _selectPos;
 	QPoint _startPos;
-	int flag = 7;
+	QPointF _vln;
+
 
 	float ratio_gpt;
 	// 0: select状态, 1: 缩放状态, 2: measure状态, 6:绘制临时图形. 7:绘制数据图形,  8:显示导入数据后的坐标轴, 9: 初始化图片
+	// 98: 绘制为原图, 99: 没有任何功能状态
 
 	//QVector<QPointF> _DataSin;
 	struct data_set {
@@ -107,11 +113,19 @@ protected:
 		case 1:
 		{
 			qDebug() << "reset " << flag;
-			this->resetTransform();
-			viewport()->repaint();
 			flag = 4;
 			viewport()->repaint();
 			flag = 1;
+		}
+		case 99:
+		{
+			if (_isScale)
+			{
+				flag = 98;
+				viewport()->repaint();
+				flag = 99;
+			}
+			break;
 		}
 		default:
 			break;
@@ -124,6 +138,11 @@ protected:
 		{
 		case 0:
 		{
+			if (_selectRec.isEmpty())
+			{
+				_selectRec = QRectF();
+				return;
+			}
 
 			//flag = 5;
 			//viewport()->repaint();
@@ -172,9 +191,16 @@ protected:
 		case 1:
 		{
 			viewport()->update();
+			qDebug() << horizontalScrollBar()->value() << sceneRect().width();
 			int delta = event->angleDelta().y();
 			horizontalScrollBar()->setValue(horizontalScrollBar()->value() - delta);
 			flag = 5;
+			break;
+		}
+		case 99:
+		{
+			int delta = event->angleDelta().y();
+			horizontalScrollBar()->setValue(horizontalScrollBar()->value() - delta);
 			break;
 		}
 		default:
