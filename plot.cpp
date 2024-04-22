@@ -11,6 +11,10 @@ plot::plot(QWidget *parent)
         ui->graphicsView->flag = ui->checkBox_zoom->isChecked() ? 0 : 99;
         });
 
+    connect(ui->checkBox_measure, &QCheckBox::clicked, this, [this]() {
+        ui->graphicsView->flag = ui->checkBox_zoom->isChecked() ? 0 : 11;
+        });
+
 
 
     //update();

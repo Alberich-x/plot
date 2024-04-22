@@ -261,7 +261,7 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
             data_iter += interval_rect;
 
             pp_this.push_back(mapToScene(path_this));
-
+            _ppRatio = pp_this;
             
         }
 
@@ -331,7 +331,7 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
         }
 
 
-
+        
 
         int cnt = 0;
         //QPainterPath path(_DataSin[0]);
@@ -392,6 +392,7 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
         for (int i = height_each * 5; i < height; i += height_each * 5)
         {
             painter.drawLine(0, i, width, i);
+            _lineVectorGlobal.push_back(i);
         }
         painter.setPen(pen2);
 
@@ -504,9 +505,79 @@ void MyGraphicsView::paintEvent(QPaintEvent* event)
     }
 
 
-
-
+    case 11: //绘制测量线
+    {
+        QGraphicsView::paintEvent(event);
+        QPainter painter(viewport());
+		painter.setPen(Qt::red);
+        
+		painter.drawLine(_selectLine);
+        break;
+    }
     
+    case 12://先用朴素算法， 在拿到数据后进行特化
+    {
+        QGraphicsView::paintEvent(event);
+
+
+
+
+
+
+        qreal diffv_abs = -1;
+        int line_number = -1;
+        for (int i = 0; i < _lineVectorGlobal.size(); i++)
+        {
+            qreal diffv_this = abs(_lineVectorGlobal[i] - _startPos.y());
+            if (diffv_this > diffv_abs)
+            {
+                diffv_abs = diffv_this;
+                line_number = i;
+            }
+        }
+        qDebug() << "line_number:" << line_number << "Size of _lineVectorGlobal: " << _lineVectorGlobal.size() << " Size of _ppRatio: " << _ppRatio.size();
+        QPointF p1_this = mapToScene(_startPos.toPoint()), p2_this = mapToScene(_selectPos.toPoint());
+        qreal distance_this = abs(p1_this.x() - p2_this.x());
+        QPointF p1_paint, p2_paint;
+        qreal line_vertical = _lineVectorGlobal[line_number];
+        
+        //此处查询距离最近的x轴坐标(需要按数据类型特化, 要是全部随机则需要替换算法)
+        //此处间隔为5
+        int sxn = _startPos.x() / 5;
+        int exn = _selectPos.x() / 5;
+        qDebug() << "sxn and exn: " << sxn << exn;
+
+
+
+
+        p1_paint = _dataSin[line_number].path.elementAt(sxn);
+        p2_paint = _dataSin[line_number].path.elementAt(exn);
+        qDebug() << "p1_paint: " << p1_paint << "p2_paint: " << p2_paint;
+        p1_paint = mapFromScene(p1_paint);
+        p2_paint = mapFromScene(p2_paint);
+        _measureLine = QLine(p1_paint.toPoint(), p2_paint.toPoint());
+        //_measureLine = QLine(_startPos.toPoint(), _selectPos.toPoint());
+        qDebug() << "p1_paint and p2_paint: " << p1_paint << p2_paint;
+        QPainter painter_this(viewport());
+        painter_this.setPen(Qt::red);
+        painter_this.drawLine(_measureLine);
+        qDebug() << "_measureLine:" << _measureLine << "_startPos: " << _startPos << "_selectPos" << _selectPos ;
+        
+        
+
+
+
+        flag = 11;
+        
+        break;
+    }
+
+
+
+
+
+
+
     case 98:
     {
         QGraphicsView::paintEvent(event);

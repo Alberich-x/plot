@@ -24,7 +24,7 @@ public:
 	int flag = 7;
 private:
 	QPainter* _painterViewport;
-
+	QVector<QPainterPath> _ppRatio;
 
 	bool _isSelect;
 	bool _isScale = false;
@@ -34,14 +34,18 @@ private:
 	QGraphicsScene* _scene4;	//存储初始化页面图形, 可以在使用后删除
 	QGraphicsScene* _scene5;
 	QGraphicsScene* _sceneCS;
+	QGraphicsScene* _sceneMeasure;
 
 	float width;
 	float height;
 
 	QRectF _selectRec, _selectRecNow, _thisRec;
-	QPoint _selectPos;
-	QPoint _startPos;
+	QLine _selectLine, _measureLine;
+	QPointF _selectPos;
+	QPointF _startPos;
 	QPointF _vln;
+
+	QVector<qreal> _lineVectorGlobal;
 
 
 	float ratio_gpt;
@@ -88,9 +92,15 @@ protected:
 
 			break;
 		}
-
 		case 1:
 		{
+			break;
+		}
+		case 11:
+		{
+			_selectPos = event->pos();
+			_selectLine.setP2(_selectPos.toPoint());
+			viewport()->update();
 			break;
 		}
 		default:
@@ -106,7 +116,6 @@ protected:
 			_isSelect = true;
 			_selectPos = event->pos();
 			_startPos = _selectPos;
-			qDebug() << event->pos();
 			_selectRec.setTopLeft(_selectPos);
 			break;
 		}
@@ -116,7 +125,16 @@ protected:
 			flag = 4;
 			viewport()->repaint();
 			flag = 1;
+			break;
 		}
+		case 11:
+		{
+			_selectPos = event->pos();
+			_startPos = _selectPos;
+			_selectLine.setP1(event->pos());
+			break;
+		}
+
 		case 99:
 		{
 			if (_isScale)
@@ -173,6 +191,14 @@ protected:
 			flag = 0;
 			qDebug() << "Set the flag to 0";
 			break;
+		}
+
+		case 11:
+		{
+			_selectLine = QLine();
+			flag = 12;
+			//viewport()->repaint();
+			viewport()->update();
 		}
 		default:
 			break;
