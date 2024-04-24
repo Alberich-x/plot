@@ -9,6 +9,8 @@
 #include <qgraphicsitem.h>
 #include <qscrollbar.h>
 #include <QVector>
+#include <QTimer>
+#include <chrono>
 class MyGraphicsView : public QGraphicsView {
 	Q_OBJECT
 public:
@@ -23,6 +25,9 @@ public:
 
 	int flag = 7;
 private:
+	const int MAX_PIXMAP = 32768;
+
+
 	QPainter* _painterViewport;
 	QVector<QPainterPath> _ppRatio;
 
@@ -47,6 +52,10 @@ private:
 
 	QVector<qreal> _lineVectorGlobal;
 
+	QPainterPath pathQuickChange(qreal ratio_x, qreal ratio_y, QPainterPath pathToChange);
+
+
+
 
 	float ratio_gpt;
 	// 0: select状态, 1: 缩放状态, 2: measure状态, 6:绘制临时图形. 7:绘制数据图形,  8:显示导入数据后的坐标轴, 9: 初始化图片
@@ -58,6 +67,7 @@ private:
 		QPainterPath path;
 	};
 	QVector<data_set> _dataSin;
+	QVector<data_set> _dataSinRatio;
 
 	QRectF caculateMinRect()
 	{
@@ -217,7 +227,7 @@ protected:
 		case 1:
 		{
 			viewport()->update();
-			qDebug() << horizontalScrollBar()->value() << sceneRect().width();
+			//qDebug() << horizontalScrollBar()->value() << sceneRect().width();
 			int delta = event->angleDelta().y();
 			horizontalScrollBar()->setValue(horizontalScrollBar()->value() - delta);
 			flag = 5;

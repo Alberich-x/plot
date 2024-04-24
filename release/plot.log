@@ -1,18 +1,20 @@
 ﻿  MyGraphicScene.cpp
-D:\code\git\qt\plot\MyGraphicsScene.h(153,38): warning C4100: “event”: 未引用的形参
-  (编译源文件“MyGraphicScene.cpp”)
-  
-D:\code\git\qt\plot\MyGraphicScene.cpp(42,15): warning C4189: “ratio_position”: 局部变量已初始化但不引用
-D:\code\git\qt\plot\MyGraphicScene.cpp(221,15): warning C4189: “scale_vertical”: 局部变量已初始化但不引用
-D:\code\git\qt\plot\MyGraphicScene.cpp(226,13): warning C4189: “number_data”: 局部变量已初始化但不引用
-D:\code\git\qt\plot\MyGraphicScene.cpp(237,15): warning C4189: “cnt_path”: 局部变量已初始化但不引用
-D:\code\git\qt\plot\MyGraphicScene.cpp(220,15): warning C4189: “scale_horizon”: 局部变量已初始化但不引用
-D:\code\git\qt\plot\MyGraphicScene.cpp(318,13): warning C4189: “cnt_ite”: 局部变量已初始化但不引用
-D:\code\git\qt\plot\MyGraphicScene.cpp(317,15): warning C4189: “height_now”: 局部变量已初始化但不引用
-D:\code\git\qt\plot\MyGraphicScene.cpp(475,13): warning C4189: “tick_interval”: 局部变量已初始化但不引用
-D:\code\git\qt\plot\MyGraphicScene.cpp(454,13): warning C4189: “width_each”: 局部变量已初始化但不引用
-D:\code\git\qt\plot\MyGraphicScene.cpp(476,13): warning C4189: “tick_length”: 局部变量已初始化但不引用
-D:\code\git\qt\plot\MyGraphicScene.cpp(540,15): warning C4189: “distance_this”: 局部变量已初始化但不引用
-D:\code\git\qt\plot\MyGraphicScene.cpp(542,15): warning C4189: “line_vertical”: 局部变量已初始化但不引用
-D:\code\git\qt\plot\MyGraphicScene.cpp(585,15): warning C4189: “ratio_position”: 局部变量已初始化但不引用
-  plot.vcxproj -> D:\code\git\qt\plot\release\plot.exe
+E:\Qt files\plot\MyGraphicsScene.h(163,38): warning C4100: “event”: 未引用的形参
+E:\Qt files\plot\MyGraphicScene.cpp(42,15): warning C4189: “ratio_position”: 局部变量已初始化但不引用
+E:\Qt files\plot\MyGraphicScene.cpp(265,15): warning C4189: “scale_vertical”: 局部变量已初始化但不引用
+E:\Qt files\plot\MyGraphicScene.cpp(270,13): warning C4189: “number_data”: 局部变量已初始化但不引用
+E:\Qt files\plot\MyGraphicScene.cpp(330,15): warning C4189: “last_line_each”: 局部变量已初始化但不引用
+E:\Qt files\plot\MyGraphicScene.cpp(281,15): warning C4189: “cnt_path”: 局部变量已初始化但不引用
+E:\Qt files\plot\MyGraphicScene.cpp(264,15): warning C4189: “scale_horizon”: 局部变量已初始化但不引用
+E:\Qt files\plot\MyGraphicScene.cpp(192,15): warning C4189: “length”: 局部变量已初始化但不引用
+E:\Qt files\plot\MyGraphicScene.cpp(331,15): warning C4189: “first_line_each_ratio”: 局部变量已初始化但不引用
+E:\Qt files\plot\MyGraphicScene.cpp(190,15): warning C4189: “line_iter”: 局部变量已初始化但不引用
+E:\Qt files\plot\MyGraphicScene.cpp(381,13): warning C4189: “cnt_ite”: 局部变量已初始化但不引用
+E:\Qt files\plot\MyGraphicScene.cpp(380,15): warning C4189: “height_now”: 局部变量已初始化但不引用
+E:\Qt files\plot\MyGraphicScene.cpp(601,13): warning C4189: “tick_interval”: 局部变量已初始化但不引用
+E:\Qt files\plot\MyGraphicScene.cpp(580,13): warning C4189: “width_each”: 局部变量已初始化但不引用
+E:\Qt files\plot\MyGraphicScene.cpp(602,13): warning C4189: “tick_length”: 局部变量已初始化但不引用
+E:\Qt files\plot\MyGraphicScene.cpp(668,15): warning C4189: “distance_this”: 局部变量已初始化但不引用
+E:\Qt files\plot\MyGraphicScene.cpp(670,15): warning C4189: “line_vertical”: 局部变量已初始化但不引用
+E:\Qt files\plot\MyGraphicScene.cpp(722,15): warning C4189: “ratio_position”: 局部变量已初始化但不引用
+  plot.vcxproj -> E:\Qt files\plot\release\plot.exe

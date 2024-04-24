@@ -1,1 +1,2 @@
 D:\code\git\qt\plot\release\plot.exe
+E:\Qt files\plot\release\plot.exe
